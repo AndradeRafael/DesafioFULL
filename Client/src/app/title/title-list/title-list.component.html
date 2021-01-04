@@ -1,0 +1,22 @@
+<app-page-title [pageTitle]="title"></app-page-title>
+<table class="table table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Número do título</th>
+            <th scope="col">Nome do devedor</th>
+            <th scope="col">Qtde de parcelas</th>
+            <th scope="col">Valor original</th>
+            <th scope="col">Valor atualizado na data de hoje</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let title of titles" [routerLink]="['details', title.id]">
+            <td scope="row">{{title.number}}</td>
+            <td>{{title.obligator.name}}</td>
+            <td>{{title.quotaNumbers}}</td>
+            <td>{{title.originalValue | number : '1.2-2'}}</td>
+            <td>{{title.updatedValue | number : '1.2-2'}}</td>
+        </tr>
+    </tbody>
+</table>
+    

@@ -1,0 +1,52 @@
+<app-page-title [pageTitle]="title"></app-page-title>
+<form [formGroup]="titleForm" (submit)="titleSubmit()">
+    <div class="mb-3">
+        <label class="form-label">Número do título</label>
+        <input type="number" formControlName="number" class="form-control" >
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Porcentagem de juros</label>
+        <input type="number" formControlName="interest" class="form-control" >
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Porcentagem de multa</label>
+        <input type="number" formControlName="fine" class="form-control" >
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Valor original</label>
+        <input type="number" formControlName="originalValue" class="form-control" >
+    </div>
+    <div class="mb-3" formGroupName="obligator">
+        <div class="mb-3">
+            <label class="form-label">Nome do devedor</label>
+            <input type="text" formControlName="name" class="form-control" >
+        </div>
+        <div class="mb-3">
+            <label class="form-label">CPF do devedor (Somente números)</label>
+            <input type="number" formControlName="cpf" class="form-control" >
+        </div>
+    </div>
+    <div class="text-white form-group bg-info rounded">
+        <div class="text-white col-sm-offset-2">
+            <button type="button" class="text-white btn btn-primary m-2" (click)="addQuota()">Adicionar Parcela</button>
+        </div>
+        <div class="text-white m-3" formArrayName="quota" *ngFor="let quota of titleForm.get('quota')['controls']; let i = index">
+            <div class="mb-3" [formGroupName]="i">
+                <div class="text-white mb-3">
+                    <label class="text-white form-label">Número da parcela</label>
+                    <input type="number" formControlName="number" class="form-control" >
+                </div>
+                <div class="text-white mb-3">
+                    <label class="text-white form-label">Valor da parcela</label>
+                    <input type="number" formControlName="value" class="form-control" >
+                </div>
+                <div class="text-white pb-3">
+                    <label class="text-white form-label">Data de vencimento da parcela</label>
+                    <input type="date" formControlName="date" class="form-control" >
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <button type="submit" [disabled]="!titleForm.valid" class="btn btn-primary">Submit</button>
+</form>

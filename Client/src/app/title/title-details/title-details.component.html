@@ -1,0 +1,42 @@
+<app-page-title [pageTitle]="'Detalhes do título'"></app-page-title>
+<div class="col-lg-12 rounded row p-3 col-bg-offset-2">
+    <div class="col-lg rounded-left">
+        <h4>
+            Título: {{selectedTitle.number}}
+        </h4>
+        <div class="mb-3">
+            Nome do devedor: {{selectedTitle.obligator.name}}
+        </div>
+        <div class="mb-3">
+            CPF do devedor: {{selectedTitle.obligator.cpf}}
+        </div>
+        <div class="mb-3">
+            Quantidade de parcelas: {{selectedTitle.quotaNumbers}}
+        </div>
+        <div class="mb-3">
+            Valor original: {{selectedTitle.originalValue | number : '1.2-2'}}
+        </div>
+        <div class="mb-3">
+            Dias em atraso: {{this.lateDays}}
+        </div>
+        <div class="mb-3">
+            Valor atualizado na data de hoje: R${{selectedTitle.updatedValue | number : '1.2-2'}}
+        </div>
+        <div class="mb-3">
+            Porcentagem de multa: {{selectedTitle.fine}}%
+        </div> 
+        <div class="mb-3">
+            Porcentagem de juros: {{selectedTitle.interest}}%
+        </div> 
+    </div>
+    <div class="col-lg rounded-right">
+        <div class=" form-group rounded">
+            <h4>Parcelas</h4>
+        </div>
+        <div class="m-3" *ngFor="let q of selectedTitle.quota">
+            <div class="m-3">
+                A parcela {{q.number}} está atrasada à {{q.delayedDays}} dias
+            </div>
+        </div>
+    </div>
+</div>
